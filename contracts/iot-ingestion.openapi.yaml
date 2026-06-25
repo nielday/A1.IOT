@@ -1,0 +1,73 @@
+openapi: 3.1.0
+info:
+  title: FIT4110 Demo Day - IoT Ingestion API
+  version: 1.0.0
+  contact:
+    name: Team A1 - IoT Ingestion
+  description: |
+    Contract rút gọn dành riêng cho Demo Day.
+    Hệ thống chính chạy giao tiếp qua MQTT. HTTP REST API chỉ dùng duy nhất endpoint GET /health để phục vụ Healthcheck từ các nhóm đối tác.
+servers:
+  - url: http://localhost:8000
+    description: Local or Docker Compose API service
+tags:
+  - name: system
+    description: Health and runtime information
+
+paths:
+  /health:
+    get:
+      tags: [system]
+      operationId: getHealth
+      summary: Kiểm tra trạng thái service và kết nối MQTT
+      description: |
+        Public health check dùng để kiểm tra API container đã sẵn sàng và MQTT background worker đã kết nối thành công tới HiveMQ.
+        Sẽ trả về 503 nếu MQTT chưa kết nối.
+      responses:
+        "200":
+          description: Service và MQTT đang hoạt động
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HealthResponse"
+              examples:
+                ok:
+                  value:
+                    status: ok
+                    service: iot-ingestion
+                    version: 1.0.0
+                    mqtt: connected
+        "503":
+          description: Service đang chạy nhưng kết nối tới MQTT HiveMQ thất bại
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HealthResponse"
+              examples:
+                error:
+                  value:
+                    status: error
+                    service: iot-ingestion
+                    version: 1.0.0
+                    mqtt: disconnected
+
+components:
+  schemas:
+    HealthResponse:
+      type: object
+      required: [status, service, version, mqtt]
+      properties:
+        status:
+          type: string
+          enum: [ok, error]
+          example: ok
+        service:
+          type: string
+          example: iot-ingestion
+        version:
+          type: string
+          example: 1.0.0
+        mqtt:
+          type: string
+          enum: [connected, disconnected]
+          example: connected

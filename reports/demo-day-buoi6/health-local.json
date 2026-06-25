@@ -1,0 +1,6 @@
+{
+    "status": "ok",
+    "service": "iot-ingestion",
+    "version": "1.0.0",
+    "mqtt": "connected"
+}

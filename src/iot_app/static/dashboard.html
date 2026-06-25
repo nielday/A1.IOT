@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>IOT INGESTION // A1 — LIVE FEED</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Share+Tech+Mono&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --fg: #e0e0e0;
+    --card: #12121a;
+    --muted: #1c1c2e;
+    --muted-fg: #6b7280;
+    --accent: #00ff88;      /* normal */
+    --secondary: #ff00ff;   /* sensor_error */
+    --tertiary: #00d4ff;
+    --warning: #ffb300;     /* warning */
+    --danger: #ff3366;      /* danger / invalid_device */
+    --border: #2a2a3a;
+    --mono: "JetBrains Mono", "Consolas", monospace;
+    --display: "Orbitron", "Share Tech Mono", monospace;
+    --label: "Share Tech Mono", monospace;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0; padding: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--mono);
+    min-height: 100vh;
+  }
+
+  /* Grid / circuit background */
+  body {
+    background-image:
+      linear-gradient(rgba(0,255,136,0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,255,136,0.035) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+
+  /* Scanline overlay */
+  body::after {
+    content: "";
+    position: fixed; inset: 0;
+    pointer-events: none;
+    z-index: 9999;
+    background: repeating-linear-gradient(
+      0deg, transparent, transparent 2px,
+      rgba(0,0,0,0.25) 2px, rgba(0,0,0,0.25) 4px);
+    mix-blend-mode: multiply;
+  }
+
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 28px 20px 80px; }
+
+  /* ── Header ── */
+  header { border-bottom: 1px solid var(--border); padding-bottom: 18px; margin-bottom: 22px; }
+  .title {
+    font-family: var(--display);
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    margin: 0;
+    color: var(--accent);
+    text-shadow: 0 0 10px rgba(0,255,136,0.5), 0 0 24px rgba(0,255,136,0.25);
+    position: relative;
+  }
+  .title::before {
+    content: attr(data-text);
+    position: absolute; left: 0; top: 0;
+    color: var(--secondary); opacity: 0.7;
+    text-shadow: none; z-index: -1;
+    animation: glitch 3.5s infinite steps(2);
+  }
+  .subtitle {
+    font-family: var(--label); text-transform: uppercase;
+    letter-spacing: 0.25em; color: var(--muted-fg);
+    font-size: 0.8rem; margin-top: 8px;
+  }
+  .cursor { color: var(--accent); animation: blink 1s step-end infinite; }
+
+  .statusbar { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 16px; align-items: center; }
+  .pill {
+    font-family: var(--label); text-transform: uppercase; letter-spacing: 0.15em;
+    font-size: 0.72rem; padding: 6px 12px; border: 1px solid var(--border);
+    clip-path: polygon(0 6px,6px 0,100% 0,100% calc(100% - 6px),calc(100% - 6px) 100%,0 100%);
+    color: var(--muted-fg);
+  }
+  .pill b { color: var(--fg); }
+  .pill.ok { border-color: var(--accent); color: var(--accent); box-shadow: 0 0 6px rgba(0,255,136,0.3); }
+  .pill.down { border-color: var(--danger); color: var(--danger); box-shadow: 0 0 6px rgba(255,51,102,0.4); }
+
+  /* ── Stats ── */
+  .stats { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; margin-bottom: 24px; }
+  @media (max-width: 760px){ .stats { grid-template-columns: repeat(3, 1fr); } }
+  .stat {
+    background: var(--card); border: 1px solid var(--border);
+    padding: 14px 12px; text-align: center;
+    clip-path: polygon(0 8px,8px 0,100% 0,100% calc(100% - 8px),calc(100% - 8px) 100%,0 100%);
+  }
+  .stat .n { font-family: var(--display); font-size: 1.7rem; font-weight: 700; line-height: 1; }
+  .stat .l { font-family: var(--label); text-transform: uppercase; letter-spacing: 0.15em; font-size: 0.62rem; color: var(--muted-fg); margin-top: 6px; }
+
+  /* ── Feed ── */
+  .feed-head { font-family: var(--label); text-transform: uppercase; letter-spacing: 0.2em; color: var(--muted-fg); font-size: 0.78rem; margin-bottom: 12px; }
+  .feed { display: flex; flex-direction: column; gap: 12px; }
+
+  .ev {
+    background: var(--card); border: 1px solid var(--border);
+    border-left-width: 3px; padding: 14px 16px;
+    clip-path: polygon(0 9px,9px 0,100% 0,100% calc(100% - 9px),calc(100% - 9px) 100%,0 100%);
+    transition: all 120ms cubic-bezier(.4,0,.2,1);
+    animation: slidein 200ms ease-out;
+  }
+  .ev:hover { transform: translateY(-1px); }
+  .ev-top { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 8px; }
+  .ev-dev { font-weight: 700; color: var(--fg); }
+  .ev-loc { color: var(--muted-fg); font-size: 0.85rem; }
+  .ev-time { font-family: var(--label); color: var(--muted-fg); font-size: 0.72rem; letter-spacing: 0.1em; }
+  .badge {
+    font-family: var(--label); text-transform: uppercase; letter-spacing: 0.12em;
+    font-size: 0.68rem; padding: 3px 10px; border: 1px solid currentColor;
+  }
+  .reason { font-size: 0.8rem; color: var(--muted-fg); margin: 8px 0; }
+  .reason .k { color: var(--tertiary); }
+
+  .metrics { display: flex; flex-wrap: wrap; gap: 8px 18px; margin-top: 6px; }
+  .m { font-size: 0.82rem; }
+  .m .mk { color: var(--muted-fg); text-transform: uppercase; font-size: 0.66rem; letter-spacing: 0.1em; }
+  .m .mv { color: var(--fg); }
+  .m.null .mv { color: var(--danger); }
+
+  details { margin-top: 8px; }
+  summary { cursor: pointer; color: var(--muted-fg); font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; }
+  pre { background: var(--bg); border: 1px solid var(--border); padding: 10px; overflow-x: auto; font-size: 0.74rem; color: var(--tertiary); margin: 6px 0 0; }
+
+  /* status colors */
+  .s-normal        { border-left-color: var(--accent); }   .s-normal .badge { color: var(--accent); }
+  .s-warning       { border-left-color: var(--warning); }  .s-warning .badge { color: var(--warning); }
+  .s-danger        { border-left-color: var(--danger); box-shadow: 0 0 10px rgba(255,51,102,0.25); } .s-danger .badge { color: var(--danger); }
+  .s-invalid_device{ border-left-color: var(--danger); }   .s-invalid_device .badge { color: var(--danger); }
+  .s-sensor_error  { border-left-color: var(--secondary); }.s-sensor_error .badge { color: var(--secondary); }
+
+  .c-normal { color: var(--accent); } .c-warning { color: var(--warning); }
+  .c-danger, .c-invalid_device { color: var(--danger); } .c-sensor_error { color: var(--secondary); }
+
+  .empty { color: var(--muted-fg); text-align: center; padding: 40px; border: 1px dashed var(--border); }
+
+  @keyframes blink { 50% { opacity: 0; } }
+  @keyframes glitch {
+    0%,100% { transform: translate(0); } 20% { transform: translate(-2px,1px); }
+    40% { transform: translate(2px,-1px); } 60% { transform: translate(-1px,-1px); } 80% { transform: translate(1px,1px); }
+  }
+  @keyframes slidein { from { opacity: 0; transform: translateX(-6px); } to { opacity: 1; transform: translateX(0); } }
+  @media (prefers-reduced-motion: reduce) { .title::before, .ev { animation: none; } }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1 class="title" data-text="IOT INGESTION // A1">IOT INGESTION // A1</h1>
+      <div class="subtitle">&gt; SMART CAMPUS · LIVE SENSOR FEED<span class="cursor">_</span></div>
+      <div class="statusbar">
+        <span class="pill" id="mqttPill">MQTT: <b>...</b></span>
+        <span class="pill">TOPIC: <b id="topic">—</b></span>
+        <span class="pill">VER: <b id="ver">—</b></span>
+        <span class="pill">UPDATED: <b id="updated">—</b></span>
+      </div>
+    </header>
+
+    <section class="stats" id="stats"></section>
+
+    <div class="feed-head">&gt; EVENT STREAM (newest first)</div>
+    <section class="feed" id="feed">
+      <div class="empty">Đang chờ dữ liệu từ A1...</div>
+    </section>
+  </div>
+
+<script>
+const STATUS_LABEL = {
+  normal: "NORMAL", warning: "WARNING", danger: "DANGER",
+  sensor_error: "SENSOR_ERR", invalid_device: "INVALID_DEV"
+};
+const METRIC_DEFS = [
+  ["temperature_c","TEMP","°C"], ["humidity_percent","HUM","%"],
+  ["co2_ppm","CO2","ppm"], ["smoke_ppm","SMOKE","ppm"],
+  ["battery_percent","BAT","%"], ["light_lux","LIGHT","lux"],
+];
+
+function esc(s){ return String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+function fmtTime(iso){ try { return new Date(iso).toLocaleTimeString('vi-VN',{hour12:false}); } catch { return iso || '—'; } }
+
+function renderStats(events){
+  const counts = { total: events.length, normal:0, warning:0, danger:0, sensor_error:0, invalid_device:0 };
+  events.forEach(e => { if (counts[e.status] !== undefined) counts[e.status]++; });
+  const order = [["total","TOTAL","fg"],["normal","NORMAL","normal"],["warning","WARNING","warning"],
+                 ["danger","DANGER","danger"],["sensor_error","SENSOR ERR","sensor_error"],["invalid_device","INVALID DEV","invalid_device"]];
+  document.getElementById('stats').innerHTML = order.map(([k,l,c]) =>
+    `<div class="stat"><div class="n ${c==='fg'?'':'c-'+c}">${counts[k]}</div><div class="l">${l}</div></div>`
+  ).join('');
+}
+
+function renderEvent(e){
+  const st = e.status || 'normal';
+  const metrics = METRIC_DEFS.map(([key,lbl,unit]) => {
+    const v = e[key];
+    const isNull = (v === null || v === undefined);
+    const val = isNull ? "NULL" : (key==='light_lux' ? v : v) + (unit ? " "+unit : "");
+    return `<div class="m ${isNull?'null':''}"><span class="mk">${lbl}</span> <span class="mv">${esc(val)}</span></div>`;
+  }).join('');
+  const motion = (e.motion_detected === null || e.motion_detected === undefined)
+      ? `<div class="m null"><span class="mk">MOTION</span> <span class="mv">NULL</span></div>`
+      : `<div class="m"><span class="mk">MOTION</span> <span class="mv">${e.motion_detected ? "YES":"no"}</span></div>`;
+
+  return `<article class="ev s-${st}">
+    <div class="ev-top">
+      <div><span class="ev-dev">${esc(e.device_id||'?')}</span> <span class="ev-loc">@ ${esc(e.location||'?')}</span></div>
+      <div>
+        <span class="badge">${STATUS_LABEL[st]||st} · ${esc(e.alert_level||'-')}</span>
+        <span class="ev-time">${fmtTime(e.received_at || e.timestamp)}</span>
+      </div>
+    </div>
+    <div class="reason">&gt; reason: <span class="k">${esc(e.reason||'—')}</span></div>
+    <div class="metrics">${metrics}${motion}</div>
+    <details><summary>raw payload</summary><pre>${esc(JSON.stringify(e,null,2))}</pre></details>
+  </article>`;
+}
+
+// Nhớ event đã hiển thị để chỉ THÊM cái mới (không vẽ lại DOM cũ
+// → raw payload đang mở không bị đóng lại khi có log mới)
+const seen = new Set();
+function evKey(e){ return e.event_id || ((e.received_at||'') + (e.device_id||'')); }
+
+async function tick(){
+  try {
+    const r = await fetch('/api/recent-events', {cache:'no-store'});
+    const data = await r.json();
+    const events = data.events || [];
+
+    const pill = document.getElementById('mqttPill');
+    const up = data.mqtt === 'connected';
+    pill.className = 'pill ' + (up ? 'ok' : 'down');
+    pill.innerHTML = 'MQTT: <b>' + (data.mqtt||'?').toUpperCase() + '</b>';
+    document.getElementById('topic').textContent = data.output_topic || '—';
+    document.getElementById('ver').textContent = data.version || '—';
+    document.getElementById('updated').textContent = new Date().toLocaleTimeString('vi-VN',{hour12:false});
+
+    renderStats(events);
+
+    const feed = document.getElementById('feed');
+    // Chỉ thêm event MỚI vào đầu, giữ nguyên thẻ cũ (và trạng thái mở raw payload)
+    const fresh = events.filter(e => !seen.has(evKey(e)));
+    if (fresh.length) {
+      const ph = feed.querySelector('.empty');
+      if (ph) ph.remove();
+      // events là newest-first → duyệt ngược để cái mới nhất nằm trên cùng
+      for (let i = fresh.length - 1; i >= 0; i--) {
+        seen.add(evKey(fresh[i]));
+        feed.insertAdjacentHTML('afterbegin', renderEvent(fresh[i]));
+      }
+      // Giới hạn 50 thẻ trong DOM cho nhẹ
+      while (feed.children.length > 50) feed.lastElementChild.remove();
+    }
+
+    if (!events.length && !feed.querySelector('.ev')) {
+      feed.innerHTML = '<div class="empty">Chưa có event nào. Đảm bảo container A1 đang chạy & đã kết nối HiveMQ.</div>';
+    }
+  } catch (err) {
+    document.getElementById('mqttPill').className = 'pill down';
+    document.getElementById('mqttPill').innerHTML = 'MQTT: <b>API LỖI</b>';
+  }
+}
+tick();
+setInterval(tick, 2000);
+</script>
+</body>
+</html>

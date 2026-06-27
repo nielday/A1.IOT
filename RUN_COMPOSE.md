@@ -7,7 +7,11 @@ Theo yêu cầu mới của môn học, chúng ta sẽ sử dụng **Radmin VPN*
 2. Ghi nhận IP Radmin của máy bạn (ví dụ `26.x.x.x`) để gửi cho các nhóm khác ping `/health`.
 3. Mở quyền tường lửa cho port 8000 bằng cách chạy PowerShell (Quyền Admin):
    `netsh advfirewall firewall add rule name="FIT4110 Demo API 8000" dir=in action=allow protocol=TCP localport=8000`
-4. Mở file `.env` và điền cấu hình HiveMQ thật. Hệ thống sẽ tự dùng Internet của bạn bắn thẳng lên Cloud.
+4. Copy file mẫu thành `.env` rồi điền cấu hình HiveMQ thật (file `.env` không có sẵn trong repo vì đã được `.gitignore`):
+   ```bash
+   cp .env.example .env
+   ```
+   Sau đó mở `.env` điền `MQTT_USERNAME`, `MQTT_PASSWORD`... Hệ thống sẽ tự dùng Internet của bạn bắn thẳng lên Cloud.
 
 ## 2. Khởi động hệ thống
 Mở terminal tại thư mục gốc của dự án (`demo-day-team-iot`) và gõ:
@@ -40,4 +44,4 @@ Kết quả phải là HTTP 200 OK và:
 
 ## 5. Minh chứng Tích hợp (Tự Chụp)
 - Dùng MQTTX, subscribe vào topic output `smart-campus/events/sensor` để chụp hình bắt được dữ liệu chuẩn hóa từ hệ thống.
-- Yêu cầu nhóm Analytics (C) cho xem màn hình họ bắt được dữ liệu của nhóm mình. Chụp lại màn hình đó đưa vào báo cáo!
+- Yêu cầu nhóm Analytics (A5) cho xem màn hình họ bắt được dữ liệu của nhóm mình. Chụp lại màn hình đó đưa vào báo cáo!

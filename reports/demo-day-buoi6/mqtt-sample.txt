@@ -1,0 +1,58 @@
+-======================================================================
+MINH CHUNG MQTT — Nhom A1 (IoT Ingestion)
+Luong: Pi Simulator -> [raw/iot/environment] -> A1 chuan hoa -> [events/sensor] -> A5/A6
+Broker: HiveMQ Cloud (TLS 8883) — khong can Radmin
+======================================================================
+
+>>> INPUT (raw) — topic: smart-campus/raw/iot/environment
+    (do simulator cua giang vien ban len, source_service = pi-iot-simulator)
+{
+  "event_id": "raw-iot-87c27f5ec8",
+  "event_type": "iot.environment.sampled",
+  "source_service": "pi-iot-simulator",
+  "device_id": "esp32-hall-b201",
+  "timestamp": "2026-06-27T19:02:49+07:00",
+  "location": "Hall B201",
+  "temperature_c": 30.0,
+  "humidity_percent": 77.9,
+  "motion_detected": false,
+  "light_lux": 534,
+  "co2_ppm": 785,
+  "smoke_ppm": 0.03,
+  "battery_percent": 100,
+  "scenario_hint_for_teacher": "normal"
+}
+
+<<< OUTPUT (A1 da xu ly) — topic: smart-campus/events/sensor
+    (source_service = team-iot ; event_id dang sensor-event-* la cua nhom minh)
+{
+  "event_id": "sensor-event-2a540207",
+  "event_type": "sensor.reading.processed",
+  "source_service": "team-iot",
+  "timestamp": "2026-06-27T12:02:56.228050+00:00",
+  "raw_event_id": "raw-iot-87c27f5ec8",
+  "device_id": "esp32-hall-b201",
+  "location": "Hall B201",
+  "temperature_c": 30.0,
+  "humidity_percent": 77.9,
+  "motion_detected": false,
+  "light_lux": 534,
+  "co2_ppm": 785.0,
+  "smoke_ppm": 0.03,
+  "battery_percent": 100.0,
+  "status": "normal",
+  "alert_level": "none",
+  "reason": "environment_normal"
+}
+
+----------------------------------------------------------------------
+NGHIEP VU A1 THE HIEN QUA MINH CHUNG NAY:
+ 1. Loai bo field nhay cam: "scenario_hint_for_teacher" KHONG xuat hien o output.
+ 2. Lien ket truy vet: output.raw_event_id == input.event_id (raw-iot-87c27f5ec8).
+ 3. Doi chu so hieu service: source_service "pi-iot-simulator" -> "team-iot".
+ 4. Chuan hoa kieu: co2_ppm 785 (int) -> 785.0 (float), battery 100 -> 100.0.
+ 5. Gan 3 field nghiep vu: status / alert_level / reason
+    => giup A5 (luu thong ke) va A6 (ra quyet dinh) dung chung khong phai tu giai ma nguong.
+    Vi du nay status=normal; cac ca danger/warning/sensor_error/invalid_device
+    xem bang "Danh muc cac ca kiem thu".
+======================================================================

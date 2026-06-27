@@ -1,2 +1,2 @@
-NAME                   IMAGE                   COMMAND                  SERVICE   CREATED         STATUS                   PORTS
-fit4110-api-demo-day   demo-day-team-iot-api   "sh -c 'uvicorn iot_…"   api       6 minutes ago   Up 6 minutes (healthy)   0.0.0.0:8000->8000/tcp, [::]:8000->8000/tcp
+NAME                   IMAGE                   COMMAND                  SERVICE   CREATED        STATUS                   PORTS
+fit4110-api-demo-day   demo-day-team-iot-api   "sh -c 'uvicorn iot_…"   api       22 hours ago   Up 2 minutes (healthy)   0.0.0.0:8000->8000/tcp, [::]:8000->8000/tcp

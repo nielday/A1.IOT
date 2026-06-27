@@ -1,0 +1,40 @@
+2026-06-27 12:02:46,277 [INFO] core-business — [EVENT] device=esp32-lab-a101 location=Lab A101 status=warning level=medium reason=low_battery temp=32.2 co2=744.0 smoke=0.04
+2026-06-27 12:02:46,278 [INFO] core-business — [→ A5] Published core alert → smart-campus/events/core (type=warning, sev=medium)
+2026-06-27 12:02:46,278 [INFO] core-business — [→ A7] Sending alert: severity=medium, title='⚠️ Cảnh báo — esp32-lab-a101'
+2026-06-27 12:02:46,293 [INFO] httpx — HTTP Request: POST http://26.58.120.30:8000/api/v1/alerts "HTTP/1.1 404 Not Found"
+2026-06-27 12:02:46,294 [ERROR] core-business — [→ A7] HTTP error 404 attempt 1: {"detail":"Not Found"}
+2026-06-27 12:02:51,227 [INFO] core-business — [EVENT] device=esp32-hall-b201 location=Hall B201 status=normal level=none reason=environment_normal temp=33.4 co2=691 smoke=0.01
+2026-06-27 12:02:51,466 [INFO] core-business — [EVENT] device=esp32-hall-b201 location=Hall B201 status=normal level=none reason=environment_normal temp=33.4 co2=691.0 smoke=0.01
+2026-06-27 12:02:52,818 [INFO] core-business — [EVENT] Duplicate event_id=sensor-event-8ece7bcf-053e-4bb6-b3e4-d7a730dba219, bỏ qua
+2026-06-27 12:02:56,452 [INFO] core-business — [EVENT] device=esp32-hall-b201 location=Hall B201 status=normal level=none reason=environment_normal temp=30.0 co2=785 smoke=0.03
+2026-06-27 12:02:56,692 [INFO] core-business — [EVENT] device=esp32-hall-b201 location=Hall B201 status=normal level=none reason=environment_normal temp=30.0 co2=785.0 smoke=0.03
+2026-06-27 12:02:58,589 [INFO] core-business — [EVENT] device=esp32-library-01 location=Library 01 status=normal level=none reason=environment_normal temp=27.4 co2=904.0 smoke=0.04
+2026-06-27 12:03:01,669 [INFO] core-business — [EVENT] device=esp32-lab-a101 location=Lab A101 status=normal level=none reason=environment_normal temp=30.6 co2=551 smoke=0.04
+2026-06-27 12:03:01,911 [INFO] core-business — [EVENT] device=esp32-lab-a101 location=Lab A101 status=normal level=none reason=environment_normal temp=30.6 co2=551.0 smoke=0.04
+2026-06-27 12:03:05,330 [INFO] core-business — [EVENT] Duplicate event_id=sensor-event-18c2601a-d0df-42d2-9710-70836ee74ac5, bỏ qua
+2026-06-27 12:03:06,898 [INFO] core-business — [EVENT] device=esp32-hall-b201 location=Hall B201 status=normal level=none reason=environment_normal temp=32.8 co2=752 smoke=0.02
+2026-06-27 12:03:07,138 [INFO] core-business — [EVENT] device=esp32-hall-b201 location=Hall B201 status=normal level=none reason=environment_normal temp=32.8 co2=752.0 smoke=0.02
+2026-06-27 12:03:12,124 [INFO] core-business — [EVENT] device=esp32-hall-b201 location=Hall B201 status=normal level=none reason=environment_normal temp=28.4 co2=474 smoke=0.0
+2026-06-27 12:03:12,363 [INFO] core-business — [EVENT] device=esp32-hall-b201 location=Hall B201 status=normal level=none reason=environment_normal temp=28.4 co2=474.0 smoke=0.0
+2026-06-27 12:03:13,084 [INFO] core-business — [EVENT] Duplicate event_id=sensor-event-18c2601a-d0df-42d2-9710-70836ee74ac5, bỏ qua
+2026-06-27 12:03:17,432 [INFO] core-business — [EVENT] device=esp32-library-01 location=Library 01 status=normal level=none reason=environment_normal temp=28.7 co2=678 smoke=0.02
+2026-06-27 12:03:17,433 [INFO] core-business — [EVENT] device=esp32-library-01 location=Library 01 status=normal level=none reason=environment_normal temp=28.7 co2=678.0 smoke=0.02
+2026-06-27 12:03:18,848 [INFO] core-business — [EVENT] device=esp32-lab-a102 location=Lab A102 status=normal level=none reason=environment_normal temp=26.4 co2=822.0 smoke=0.01
+2026-06-27 12:03:22,574 [INFO] core-business — [EVENT] device=esp32-lab-a101 location=Lab A101 status=danger level=high reason=smoke_detected temp=28.6 co2=594 smoke=1.12
+2026-06-27 12:03:22,575 [INFO] core-business — [→ A5] Published core alert → smart-campus/events/core (type=critical, sev=high)
+2026-06-27 12:03:22,575 [INFO] core-business — [→ A7] Sending alert: severity=high, title='🚨 NGUY HIỂM — esp32-lab-a101'
+2026-06-27 12:03:22,588 [INFO] httpx — HTTP Request: POST http://26.58.120.30:8000/api/v1/alerts "HTTP/1.1 404 Not Found"
+2026-06-27 12:03:22,589 [ERROR] core-business — [→ A7] HTTP error 404 attempt 1: {"detail":"Not Found"}
+2026-06-27 12:03:22,813 [INFO] core-business — [EVENT] device=esp32-lab-a101 location=Lab A101 status=danger level=high reason=smoke_detected temp=28.6 co2=594.0 smoke=1.12
+2026-06-27 12:03:22,814 [INFO] core-business — [→ A5] Published core alert → smart-campus/events/core (type=critical, sev=high)
+2026-06-27 12:03:22,814 [INFO] core-business — [→ A7] Sending alert: severity=high, title='🚨 NGUY HIỂM — esp32-lab-a101'
+2026-06-27 12:03:22,824 [INFO] httpx — HTTP Request: POST http://26.58.120.30:8000/api/v1/alerts "HTTP/1.1 404 Not Found"
+2026-06-27 12:03:22,825 [ERROR] core-business — [→ A7] HTTP error 404 attempt 1: {"detail":"Not Found"}
+2026-06-27 12:03:25,588 [INFO] core-business — [EVENT] Duplicate event_id=sensor-event-854500ea-7d25-4efd-a9c7-19a5f9da7b86, bỏ qua
+2026-06-27 12:03:27,798 [INFO] core-business — [EVENT] device=esp32-gate-a location=Main Gate A status=normal level=none reason=environment_normal temp=29.6 co2=639 smoke=0.04
+2026-06-27 12:03:28,038 [INFO] core-business — [EVENT] device=esp32-gate-a location=Main Gate A status=normal level=none reason=environment_normal temp=29.6 co2=639.0 smoke=0.04
+2026-06-27 12:03:33,032 [INFO] core-business — [EVENT] device=esp32-hall-b201 location=Hall B201 status=normal level=none reason=environment_normal temp=33.4 co2=690 smoke=0.01
+2026-06-27 12:03:33,272 [INFO] core-business — [EVENT] device=esp32-hall-b201 location=Hall B201 status=normal level=none reason=environment_normal temp=33.4 co2=690.0 smoke=0.01
+2026-06-27 12:03:33,511 [INFO] core-business — [EVENT] Duplicate event_id=sensor-event-854500ea-7d25-4efd-a9c7-19a5f9da7b86, bỏ qua
+2026-06-27 12:03:38,239 [INFO] core-business — [EVENT] device=esp32-library-01 location=Library 01 status=normal level=none reason=environment_normal temp=32.1 co2=613 smoke=0.01
+2026-06-27 12:03:38,478 [INFO] core-business — [EVENT] device=esp32-library-01 location=Library 01 status=normal level=none reason=environment_normal temp=32.1 co2=613.0 smoke=0.01

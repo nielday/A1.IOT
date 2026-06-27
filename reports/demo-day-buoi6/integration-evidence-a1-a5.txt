@@ -1,0 +1,26 @@
+======================================================================
+MINH CHUNG TICH HOP A1 -> A5 (Analytics)
+A1 publish events/sensor (MQTT broker) -> A5 subscribe & luu thong ke
+Thoi diem: 2026-06-27 19:09:45
+======================================================================
+
+[1] A5 worker NHAN data A1 (log thuc te):
+📥 [MQTT] Nhận dữ liệu cảm biến A1 (esp32-gate-a) -> Đang chuyển tiếp tới API...
+📥 [MQTT] Nhận dữ liệu cảm biến A1 (esp32-library-01) -> Đang chuyển tiếp tới API...
+📥 [MQTT] Nhận dữ liệu cảm biến A1 (esp32-hall-b201) -> Đang chuyển tiếp tới API...
+📥 [MQTT] Nhận dữ liệu cảm biến A1 (esp32-hall-b201) -> Đang chuyển tiếp tới API...
+📥 [MQTT] Nhận dữ liệu cảm biến A1 (esp32-lab-a101) -> Đang chuyển tiếp tới API...
+📥 [MQTT] Nhận dữ liệu cảm biến A1 (esp32-gate-a) -> Đang chuyển tiếp tới API...
+📥 [MQTT] Nhận dữ liệu cảm biến A1 (esp32-gate-a) -> Đang chuyển tiếp tới API...
+📥 [MQTT] Nhận dữ liệu cảm biến A1 (esp32-lab-a101) -> Đang chuyển tiếp tới API...
+
+----------------------------------------------------------------------
+[2] A5 /dashboard/overview — xac nhan da luu data A1:
+(chu y: a1_iot.sources = "mqtt-team-iot" => dung nguon tu A1)
+
+{"generated_at":"2026-06-27T12:09:45.374575+00:00","totals":{"iot_telemetry":448,"camera_events":10,"core_alerts":6,"access_logs":12},"a1_iot":{"total_records":448,"active_devices":6,"avg_temperature":30.24,"avg_humidity":62.48,"avg_co2":712.58,"smoke_warnings":2,"motion_detected":4,"sources":["mqtt-iot-ingestion","mqtt-team-iot"],"seconds_since_last":1.480685},"a3_access":{"total_records":12,"allowed":8,"denied":4,"direction_in":7,"direction_out":5,"gates":2,"sources":["mqtt-access-gate"],"seconds_since_last":-25187.628615},"a4_camera":{"total_records":10,"avg_confidence":0.95,"active_cameras":1,"sources":["mqtt-camera"],"seconds_since_last":12.371385},"a6_core":{"total_alerts":6,"critical":2,"unresolved":6,"alert_types":["critical","warning"],"sources":["mqtt-core"],"seconds_since_last":28.457004}}
+======================================================================
+KET LUAN: A5 nhan thanh cong du lieu cam bien tu A1 qua HiveMQ broker,
+luu vao TimescaleDB va thong ke (a1_iot.total_records > 0,
+active_devices > 0, source = mqtt-team-iot). Tich hop A1<->A5 hoat dong.
+======================================================================

@@ -1,60 +1,50 @@
-fit4110-api-demo-day  | [2026-06-18 14:35:11,961] INFO - Received raw data for device: esp32-lab-a101
-fit4110-api-demo-day  | [2026-06-18 14:35:11,961] INFO - Processed status: normal, published to smart-campus/events/sensor
-fit4110-api-demo-day  | [2026-06-18 14:35:17,191] INFO - Received raw data for device: esp32-lab-a101
-fit4110-api-demo-day  | [2026-06-18 14:35:17,192] INFO - Processed status: normal, published to smart-campus/events/sensor
-fit4110-api-demo-day  | [2026-06-18 14:35:22,416] INFO - Received raw data for device: esp32-unknown-01
-fit4110-api-demo-day  | [2026-06-18 14:35:22,416] INFO - Processed status: invalid_device, published to smart-campus/events/sensor
-fit4110-api-demo-day  | [2026-06-18 14:35:27,626] INFO - Received raw data for device: esp32-hall-b201
-fit4110-api-demo-day  | [2026-06-18 14:35:27,627] INFO - Processed status: normal, published to smart-campus/events/sensor
-fit4110-api-demo-day  | INFO:     127.0.0.1:50708 - "GET /health HTTP/1.1" 200 OK
-fit4110-api-demo-day  | [2026-06-18 14:35:32,850] INFO - Received raw data for device: esp32-library-01
-fit4110-api-demo-day  | [2026-06-18 14:35:32,851] INFO - Processed status: warning, published to smart-campus/events/sensor
-fit4110-api-demo-day  | [2026-06-18 14:35:38,075] INFO - Received raw data for device: esp32-lab-a101
-fit4110-api-demo-day  | [2026-06-18 14:35:38,076] INFO - Processed status: normal, published to smart-campus/events/sensor
-fit4110-api-demo-day  | [2026-06-18 14:35:43,296] INFO - Received raw data for device: esp32-hall-b201
-fit4110-api-demo-day  | [2026-06-18 14:35:43,297] INFO - Processed status: normal, published to smart-campus/events/sensor
-fit4110-api-demo-day  | [2026-06-18 14:35:48,511] INFO - Received raw data for device: esp32-hall-b201
-fit4110-api-demo-day  | [2026-06-18 14:35:48,512] INFO - Processed status: normal, published to smart-campus/events/sensor
-fit4110-api-demo-day  | [2026-06-18 14:35:53,735] INFO - Received raw data for device: esp32-hall-b201
-fit4110-api-demo-day  | [2026-06-18 14:35:53,736] INFO - Processed status: warning, published to smart-campus/events/sensor
-fit4110-api-demo-day  | [2026-06-18 14:35:58,954] INFO - Received raw data for device: esp32-hall-b201
-fit4110-api-demo-day  | [2026-06-18 14:35:58,954] INFO - Processed status: normal, published to smart-campus/events/sensor
-fit4110-api-demo-day  | INFO:     127.0.0.1:46730 - "GET /health HTTP/1.1" 200 OK
-fit4110-api-demo-day  | [2026-06-18 14:36:04,180] INFO - Received raw data for device: esp32-hall-b201
-fit4110-api-demo-day  | [2026-06-18 14:36:04,180] INFO - Processed status: normal, published to smart-campus/events/sensor
-fit4110-api-demo-day  | [2026-06-18 14:36:09,402] INFO - Received raw data for device: esp32-gate-a
-fit4110-api-demo-day  | [2026-06-18 14:36:09,402] INFO - Processed status: normal, published to smart-campus/events/sensor
-fit4110-api-demo-day  | [2026-06-18 14:36:14,627] INFO - Received raw data for device: esp32-lab-a102
-fit4110-api-demo-day  | [2026-06-18 14:36:14,628] INFO - Processed status: warning, published to smart-campus/events/sensor
-fit4110-api-demo-day  | [2026-06-18 14:36:19,850] INFO - Received raw data for device: esp32-lab-a102
-fit4110-api-demo-day  | [2026-06-18 14:36:19,851] INFO - Processed status: normal, published to smart-campus/events/sensor
-fit4110-api-demo-day  | [2026-06-18 14:36:25,066] INFO - Received raw data for device: esp32-lab-a101
-fit4110-api-demo-day  | [2026-06-18 14:36:25,066] INFO - Processed status: normal, published to smart-campus/events/sensor
-fit4110-api-demo-day  | [2026-06-18 14:36:30,286] INFO - Received raw data for device: esp32-gate-a
-fit4110-api-demo-day  | [2026-06-18 14:36:30,287] INFO - Processed status: normal, published to smart-campus/events/sensor
-fit4110-api-demo-day  | INFO:     127.0.0.1:38124 - "GET /health HTTP/1.1" 200 OK
-fit4110-api-demo-day  | [2026-06-18 14:36:35,510] INFO - Received raw data for device: esp32-lab-a101
-fit4110-api-demo-day  | [2026-06-18 14:36:35,511] INFO - Processed status: warning, published to smart-campus/events/sensor
-fit4110-api-demo-day  | [2026-06-18 14:36:40,732] INFO - Received raw data for device: esp32-library-01
-fit4110-api-demo-day  | [2026-06-18 14:36:40,733] INFO - Processed status: normal, published to smart-campus/events/sensor
-fit4110-api-demo-day  | [2026-06-18 14:36:45,952] INFO - Received raw data for device: esp32-lab-a101
-fit4110-api-demo-day  | [2026-06-18 14:36:45,952] INFO - Processed status: normal, published to smart-campus/events/sensor
-fit4110-api-demo-day  | [2026-06-18 14:36:51,164] INFO - Received raw data for device: esp32-lab-a102
-fit4110-api-demo-day  | [2026-06-18 14:36:51,164] INFO - Processed status: normal, published to smart-campus/events/sensor
-fit4110-api-demo-day  | [2026-06-18 14:36:56,386] INFO - Received raw data for device: esp32-library-01
-fit4110-api-demo-day  | [2026-06-18 14:36:56,386] INFO - Processed status: normal, published to smart-campus/events/sensor
-fit4110-api-demo-day  | [2026-06-18 14:37:01,608] INFO - Received raw data for device: esp32-hall-b201
-fit4110-api-demo-day  | [2026-06-18 14:37:01,609] INFO - Processed status: normal, published to smart-campus/events/sensor
-fit4110-api-demo-day  | INFO:     127.0.0.1:48552 - "GET /health HTTP/1.1" 200 OK
-fit4110-api-demo-day  | [2026-06-18 14:37:06,836] INFO - Received raw data for device: esp32-lab-a101
-fit4110-api-demo-day  | [2026-06-18 14:37:06,837] INFO - Processed status: danger, published to smart-campus/events/sensor
-fit4110-api-demo-day  | [2026-06-18 14:37:12,057] INFO - Received raw data for device: esp32-lab-a102
-fit4110-api-demo-day  | [2026-06-18 14:37:12,058] INFO - Processed status: normal, published to smart-campus/events/sensor
-fit4110-api-demo-day  | [2026-06-18 14:37:17,277] INFO - Received raw data for device: esp32-hall-b201
-fit4110-api-demo-day  | [2026-06-18 14:37:17,278] INFO - Processed status: normal, published to smart-campus/events/sensor
-fit4110-api-demo-day  | [2026-06-18 14:37:22,500] INFO - Received raw data for device: esp32-lab-a102
-fit4110-api-demo-day  | [2026-06-18 14:37:22,501] INFO - Processed status: normal, published to smart-campus/events/sensor
-fit4110-api-demo-day  | INFO:     172.20.0.1:42330 - "GET /health HTTP/1.1" 200 OK
-fit4110-api-demo-day  | [2026-06-18 14:37:27,732] INFO - Received raw data for device: esp32-library-01
-fit4110-api-demo-day  | [2026-06-18 14:37:27,733] INFO - Processed status: normal, published to smart-campus/events/sensor
-fit4110-api-demo-day  | INFO:     172.20.0.1:42344 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.20.0.1:52088 - "POST /api/v1/alerts HTTP/1.1" 404 Not Found
+INFO:     172.20.0.1:52102 - "POST /api/v1/alerts HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:34956 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.20.0.1:34610 - "POST /api/v1/alerts HTTP/1.1" 404 Not Found
+INFO:     172.20.0.1:34620 - "POST /api/v1/alerts HTTP/1.1" 404 Not Found
+INFO:     172.20.0.1:56344 - "POST /api/v1/alerts HTTP/1.1" 404 Not Found
+INFO:     172.20.0.1:56360 - "POST /api/v1/alerts HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:53048 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35418 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.20.0.1:45484 - "POST /api/v1/alerts HTTP/1.1" 404 Not Found
+INFO:     172.20.0.1:45488 - "POST /api/v1/alerts HTTP/1.1" 404 Not Found
+INFO:     172.20.0.1:52710 - "GET /health HTTP/1.1" 200 OK
+[2026-06-27 12:02:03,333] INFO - Received raw data for device: esp32-lab-a101
+[2026-06-27 12:02:03,333] INFO - Processed status: normal, published to smart-campus/events/sensor
+[2026-06-27 12:02:08,549] INFO - Received raw data for device: esp32-hall-b201
+[2026-06-27 12:02:08,549] INFO - Processed status: warning, published to smart-campus/events/sensor
+[2026-06-27 12:02:13,787] INFO - Received raw data for device: esp32-gate-a
+[2026-06-27 12:02:13,788] INFO - Processed status: normal, published to smart-campus/events/sensor
+[2026-06-27 12:02:19,629] INFO - Received raw data for device: esp32-library-01
+[2026-06-27 12:02:19,630] INFO - Processed status: normal, published to smart-campus/events/sensor
+[2026-06-27 12:02:24,854] INFO - Received raw data for device: esp32-library-01
+[2026-06-27 12:02:24,854] INFO - Processed status: normal, published to smart-campus/events/sensor
+[2026-06-27 12:02:30,097] INFO - Received raw data for device: esp32-gate-a
+[2026-06-27 12:02:30,098] INFO - Processed status: normal, published to smart-campus/events/sensor
+[2026-06-27 12:02:35,344] INFO - Received raw data for device: esp32-library-01
+[2026-06-27 12:02:35,344] INFO - Processed status: danger, published to smart-campus/events/sensor
+[2026-06-27 12:02:40,562] INFO - Received raw data for device: esp32-library-01
+[2026-06-27 12:02:40,563] INFO - Processed status: normal, published to smart-campus/events/sensor
+[2026-06-27 12:02:45,786] INFO - Received raw data for device: esp32-lab-a101
+[2026-06-27 12:02:45,786] INFO - Processed status: warning, published to smart-campus/events/sensor
+[2026-06-27 12:02:50,998] INFO - Received raw data for device: esp32-hall-b201
+[2026-06-27 12:02:50,998] INFO - Processed status: normal, published to smart-campus/events/sensor
+[2026-06-27 12:02:56,227] INFO - Received raw data for device: esp32-hall-b201
+[2026-06-27 12:02:56,228] INFO - Processed status: normal, published to smart-campus/events/sensor
+[2026-06-27 12:03:01,452] INFO - Received raw data for device: esp32-lab-a101
+[2026-06-27 12:03:01,452] INFO - Processed status: normal, published to smart-campus/events/sensor
+[2026-06-27 12:03:06,671] INFO - Received raw data for device: esp32-hall-b201
+[2026-06-27 12:03:06,671] INFO - Processed status: normal, published to smart-campus/events/sensor
+[2026-06-27 12:03:11,902] INFO - Received raw data for device: esp32-hall-b201
+[2026-06-27 12:03:11,902] INFO - Processed status: normal, published to smart-campus/events/sensor
+[2026-06-27 12:03:17,129] INFO - Received raw data for device: esp32-library-01
+[2026-06-27 12:03:17,129] INFO - Processed status: normal, published to smart-campus/events/sensor
+[2026-06-27 12:03:22,350] INFO - Received raw data for device: esp32-lab-a101
+[2026-06-27 12:03:22,351] INFO - Processed status: danger, published to smart-campus/events/sensor
+[2026-06-27 12:03:27,580] INFO - Received raw data for device: esp32-gate-a
+[2026-06-27 12:03:27,581] INFO - Processed status: normal, published to smart-campus/events/sensor
+[2026-06-27 12:03:32,807] INFO - Received raw data for device: esp32-hall-b201
+[2026-06-27 12:03:32,807] INFO - Processed status: normal, published to smart-campus/events/sensor
+[2026-06-27 12:03:38,025] INFO - Received raw data for device: esp32-library-01
+[2026-06-27 12:03:38,025] INFO - Processed status: normal, published to smart-campus/events/sensor

@@ -47,7 +47,7 @@ curl http://127.0.0.1:8000/health
   "status": "ok",
   "service": "iot-ingestion",
   "version": "1.0.0",
-  "mqtt": "running"
+  "mqtt": "connected"
 }
 ```
 
@@ -71,4 +71,4 @@ thiết bị không hợp lệ, malformed JSON, lọc field debug và trạng th
 3. Đóng gói Payload theo Schema chuẩn -> Bắn lên Topic: `smart-campus/events/sensor` để kích hoạt báo cháy, hệ thống quạt, ...
 
 ---
-**Chúc nhóm A1 bảo vệ thành công!** 🚀
+**Nhóm A1 — Smart Campus Operations Platform (FIT4110).** 
